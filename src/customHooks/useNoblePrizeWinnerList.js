@@ -32,14 +32,17 @@ export default function useNoblePrizeWinnerList(nextData) {
     })
       .then((res) => {
         try {
-          if (res.status === 200) {
-            setNoblePriceWinner((prevState)=>[...prevState, ...res.data.nobelPrizes]);
-            setHasMoreData(nextData <= res.data.meta.count);
-            setLimit(!(nextData <= res.data.meta.count))
-            setLoading(false);
-          } else {
-            throw res;
-          }
+          setTimeout(() => {
+            if (res.status === 200) {
+              setNoblePriceWinner((prevState)=>[...prevState, ...res.data.nobelPrizes]);
+              setHasMoreData(nextData <= res.data.meta.count);
+              setLimit(!(nextData <= res.data.meta.count))
+              setLoading(false);
+            } else {
+              throw res;
+            }
+          }, 1000);
+     
         } catch (error) {
           console.error(error);
           onError(error);

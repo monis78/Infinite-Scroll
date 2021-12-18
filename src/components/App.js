@@ -1,10 +1,10 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { NEXT_DATA_SIZE, PAGE_LIMIT } from "../app-constant";
 import useNoblePrizeWinnerList from "../customHooks/useNoblePrizeWinnerList";
 import DetailCard from "./DetailCard";
 
-export default function App() {
+export default function App({ onLogout }) {
   const [pageNumber, setPageNumber] = useState(PAGE_LIMIT);
 
   const { loading, error, noblePriceWinner, hasMoreData } =
@@ -36,6 +36,7 @@ export default function App() {
 
   return (
     <Container>
+      <div onClick={onLogout}><Button>Logout</Button></div>
       {Array.isArray(noblePriceWinner) &&
         noblePriceWinner.map((personDetail, index) => {
           return (
